@@ -1,0 +1,47 @@
+body {
+  background-color: $background-color;
+  margin: 0;
+  padding-top: 250px;
+}
+
+.overlay {
+  background-color: $overlay-color;
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  opacity: 0.5;
+  z-index: -1;
+}
+
+.button {
+  margin: auto;
+  background-color: $modal-window-color;
+  color: $text-color;
+  text-align: center;
+  display: none; //todo
+}
+
+.modal-window {
+  margin: auto;
+  background-color: $modal-window-color;
+  color: $text-color;
+  width: 600px;
+  padding: 30px;
+  font-size: 24px;
+
+  animation-name: grow;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes grow {
+  0% {
+    transform: scale(0, 0) translateY(0px);
+  }
+
+  100% {
+    transform: scale(1, 1) translateY(-150px);
+  }
+}
