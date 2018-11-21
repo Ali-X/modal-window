@@ -17,7 +17,7 @@ body {
 }
 
 .button {
-  &--label {
+  &--label-show {
     display: inline-block;
     padding: 10px;
     font-size: $font-size;
@@ -26,15 +26,15 @@ body {
     cursor: pointer;
   }
 
-  &--checkbox {
+  &--checkbox-show {
     position: absolute;
     opacity: 0;
     cursor: pointer;
     height: 0;
     width: 0;
 
-    &:checked ~ .button--label {
-      display: none;
+    &:checked ~ .button--label-show {
+      opacity: 0;
     }
 
     &:checked ~ .modal-window {
@@ -42,13 +42,62 @@ body {
       animation-name: grow;
       animation-duration: 1s;
       animation-fill-mode: forwards;
-      text-align: justify;
+    }
+
+    &:checked ~ .button--label-close {
+      opacity: 1;
+      animation-name: grow;
+      animation-duration: 1s;
+      animation-fill-mode: forwards;
     }
 
     &:checked ~ .overlay {
       animation-name: fade;
       animation-duration: 1s;
       animation-fill-mode: forwards;
+    }
+  }
+
+  &--label-close {
+    display: block;
+    width: 10px;
+    height: 10px;
+    padding: 10px;
+    font-size: $font-size;
+    background-color: transparent;
+    color: $text-color;
+    border: 1px solid $text-color;
+    cursor: pointer;
+  }
+
+  &--checkbox-close {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+
+    &:checked ~ .button--label-show {
+     opacity: 1;
+    }
+
+    &:checked ~ .button--label-close {
+      opacity: 0;
+    }
+
+    &:checked ~ .modal-window {
+      opacity: 1;
+      animation-name: grow;
+      animation-duration: 1s;
+      animation-fill-mode: forwards;
+      animation-direction: reverse;
+    }
+
+    &:checked ~ .overlay {
+      animation-name: fade;
+      animation-duration: 1s;
+      animation-fill-mode: forwards;
+      animation-direction: reverse;
     }
   }
 }
@@ -62,6 +111,11 @@ body {
   font-size: $font-size;
   opacity: 0;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  text-align: justify;
+}
+
+.close-btn {
+
 }
 
 @keyframes grow {

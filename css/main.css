@@ -14,7 +14,7 @@ body {
   opacity: 0;
   z-index: -1; }
 
-.button--label {
+.button--label-show {
   display: inline-block;
   padding: 10px;
   font-size: 24px;
@@ -22,24 +22,61 @@ body {
   color: #949da5;
   cursor: pointer; }
 
-.button--checkbox {
+.button--checkbox-show {
   position: absolute;
   opacity: 0;
   cursor: pointer;
   height: 0;
   width: 0; }
-  .button--checkbox:checked ~ .button--label {
-    display: none; }
-  .button--checkbox:checked ~ .modal-window {
+  .button--checkbox-show:checked ~ .button--label-show {
+    opacity: 0; }
+  .button--checkbox-show:checked ~ .modal-window {
+    opacity: 1;
+    animation-name: grow;
+    animation-duration: 1s;
+    animation-fill-mode: forwards; }
+  .button--checkbox-show:checked ~ .button--label-close {
+    opacity: 1;
+    animation-name: grow;
+    animation-duration: 1s;
+    animation-fill-mode: forwards; }
+  .button--checkbox-show:checked ~ .overlay {
+    animation-name: fade;
+    animation-duration: 1s;
+    animation-fill-mode: forwards; }
+
+.button--label-close {
+  display: block;
+  width: 10px;
+  height: 10px;
+  padding: 10px;
+  font-size: 24px;
+  background-color: transparent;
+  color: #949da5;
+  border: 1px solid #949da5;
+  cursor: pointer; }
+
+.button--checkbox-close {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0; }
+  .button--checkbox-close:checked ~ .button--label-show {
+    opacity: 1; }
+  .button--checkbox-close:checked ~ .button--label-close {
+    opacity: 0; }
+  .button--checkbox-close:checked ~ .modal-window {
     opacity: 1;
     animation-name: grow;
     animation-duration: 1s;
     animation-fill-mode: forwards;
-    text-align: justify; }
-  .button--checkbox:checked ~ .overlay {
+    animation-direction: reverse; }
+  .button--checkbox-close:checked ~ .overlay {
     animation-name: fade;
     animation-duration: 1s;
-    animation-fill-mode: forwards; }
+    animation-fill-mode: forwards;
+    animation-direction: reverse; }
 
 .modal-window {
   margin: auto;
@@ -49,7 +86,8 @@ body {
   padding: 40px;
   font-size: 24px;
   opacity: 0;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); }
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  text-align: justify; }
 
 @keyframes grow {
   0% {

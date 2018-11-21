@@ -6,13 +6,17 @@
   <link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
-  <input id="checkbox" type="checkbox" class="button--checkbox">
-  <label class="button--label" for="checkbox">
+  <input id="show-btn" type="checkbox" class="button--checkbox-show">
+  <label class="button--label-show" for="show-btn">
     Show modal window
   </label>
   <div class="overlay"></div>
+
+  <input id="close-btn" type="checkbox" class="button--checkbox-close">
+  <label class="button--label-close" for="close-btn">
+    x
+  </label>
   <div class="modal-window">
-    <div class="modal-window__close"></div>
     <div class="modal-window__description">In user interface design for computer applications, a modal window is a
       graphical control element subordinate to an application's main window. It creates a mode that disables the main
       window, but keeps it visible with the modal window as a child window in front of it.
