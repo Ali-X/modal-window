@@ -1,7 +1,8 @@
 body {
   background-color: #e0e5ea;
   margin: 0;
-  padding-top: 250px; }
+  padding-top: 250px;
+  text-align: center; }
 
 .overlay {
   background-color: black;
@@ -10,29 +11,54 @@ body {
   position: absolute;
   top: 0;
   bottom: 0;
-  opacity: 0.5;
+  opacity: 0;
   z-index: -1; }
 
-.button {
-  margin: auto;
+.button--label {
+  display: inline-block;
+  padding: 10px;
+  font-size: 24px;
   background-color: #182c3d;
   color: #949da5;
-  text-align: center;
-  display: none; }
+  cursor: pointer; }
+
+.button--checkbox {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0; }
+  .button--checkbox:checked ~ .button--label {
+    display: none; }
+  .button--checkbox:checked ~ .modal-window {
+    opacity: 1;
+    animation-name: grow;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    text-align: justify; }
+  .button--checkbox:checked ~ .overlay {
+    animation-name: fade;
+    animation-duration: 1s;
+    animation-fill-mode: forwards; }
 
 .modal-window {
   margin: auto;
   background-color: #182c3d;
   color: #949da5;
   width: 600px;
-  padding: 30px;
+  padding: 40px;
   font-size: 24px;
-  animation-name: grow;
-  animation-duration: 1s;
-  animation-fill-mode: forwards; }
+  opacity: 0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); }
 
 @keyframes grow {
   0% {
     transform: scale(0, 0) translateY(0px); }
   100% {
     transform: scale(1, 1) translateY(-150px); } }
+
+@keyframes fade {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 0.5; } }

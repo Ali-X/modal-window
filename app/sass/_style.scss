@@ -2,6 +2,7 @@ body {
   background-color: $background-color;
   margin: 0;
   padding-top: 250px;
+  text-align: center;
 }
 
 .overlay {
@@ -11,16 +12,45 @@ body {
   position: absolute;
   top: 0;
   bottom: 0;
-  opacity: 0.5;
+  opacity: 0;
   z-index: -1;
 }
 
 .button {
-  margin: auto;
-  background-color: $modal-window-color;
-  color: $text-color;
-  text-align: center;
-  display: none; //todo
+  &--label {
+    display: inline-block;
+    padding: 10px;
+    font-size: $font-size;
+    background-color: $modal-window-color;
+    color: $text-color;
+    cursor: pointer;
+  }
+
+  &--checkbox {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+
+    &:checked ~ .button--label {
+      display: none;
+    }
+
+    &:checked ~ .modal-window {
+      opacity: 1;
+      animation-name: grow;
+      animation-duration: 1s;
+      animation-fill-mode: forwards;
+      text-align: justify;
+    }
+
+    &:checked ~ .overlay {
+      animation-name: fade;
+      animation-duration: 1s;
+      animation-fill-mode: forwards;
+    }
+  }
 }
 
 .modal-window {
@@ -28,12 +58,10 @@ body {
   background-color: $modal-window-color;
   color: $text-color;
   width: 600px;
-  padding: 30px;
-  font-size: 24px;
-
-  animation-name: grow;
-  animation-duration: 1s;
-  animation-fill-mode: forwards;
+  padding: 40px;
+  font-size: $font-size;
+  opacity: 0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 @keyframes grow {
@@ -43,5 +71,15 @@ body {
 
   100% {
     transform: scale(1, 1) translateY(-150px);
+  }
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0.5;
   }
 }
