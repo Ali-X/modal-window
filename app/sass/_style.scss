@@ -1,12 +1,11 @@
 body {
-  background-color: $background-color;
   margin: 0;
   padding-top: 250px;
   text-align: center;
+  background-color: $background-color;
 }
 
 .overlay {
-  background-color: $overlay-color;
   height: 100vh;
   width: 100vw;
   position: absolute;
@@ -14,6 +13,7 @@ body {
   bottom: 0;
   opacity: 0;
   z-index: -1;
+  background-color: $overlay-color;
 }
 
 .button {
@@ -26,96 +26,67 @@ body {
     cursor: pointer;
   }
 
-  &--checkbox-show {
+  &--checkbox {
+    height: 0;
+    width: 0;
     position: absolute;
     opacity: 0;
     cursor: pointer;
-    height: 0;
-    width: 0;
-
-    &:checked ~ .button--label-show {
-      opacity: 0;
-    }
 
     &:checked ~ .modal-window {
       opacity: 1;
-      animation-name: grow;
-      animation-duration: 1s;
-      animation-fill-mode: forwards;
+      @include getAnimation(grow);
     }
 
     &:checked ~ .button--label-close {
       opacity: 1;
-      animation-name: grow;
-      animation-duration: 1s;
-      animation-fill-mode: forwards;
+      @include getAnimation(grow);
     }
 
     &:checked ~ .overlay {
-      animation-name: fade;
-      animation-duration: 1s;
-      animation-fill-mode: forwards;
+      @include getAnimation(fade);
+    }
+
+    &:not(:checked) ~ .button--label-close {
+      opacity: 0;
+    }
+
+    &:not(:checked) ~ .overlay {
+      @include getAnimation(unfade);
     }
   }
 
   &--label-close {
     display: block;
-    width: 10px;
-    height: 10px;
-    padding: 10px;
+    width: $font-size;
+    height: 28px;
+    text-align: center;
+    line-height: $font-size;
     font-size: $font-size;
     background-color: transparent;
     color: $text-color;
     border: 1px solid $text-color;
     cursor: pointer;
-  }
+    transform: translate(600px, -20px);
+    transition-duration: 0.3s;
 
-  &--checkbox-close {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    height: 0;
-    width: 0;
-
-    &:checked ~ .button--label-show {
-     opacity: 1;
-    }
-
-    &:checked ~ .button--label-close {
-      opacity: 0;
-    }
-
-    &:checked ~ .modal-window {
-      opacity: 1;
-      animation-name: grow;
-      animation-duration: 1s;
-      animation-fill-mode: forwards;
-      animation-direction: reverse;
-    }
-
-    &:checked ~ .overlay {
-      animation-name: fade;
-      animation-duration: 1s;
-      animation-fill-mode: forwards;
-      animation-direction: reverse;
+    &:hover {
+      background-color: $text-color;
+      color: $modal-window-color;
     }
   }
 }
 
 .modal-window {
+  opacity: 0;
   margin: auto;
-  background-color: $modal-window-color;
-  color: $text-color;
   width: 600px;
   padding: 40px;
-  font-size: $font-size;
-  opacity: 0;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   text-align: justify;
-}
-
-.close-btn {
-
+  background-color: $modal-window-color;
+  color: $text-color;
+  font-size: $font-size;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 @keyframes grow {
@@ -135,5 +106,15 @@ body {
 
   100% {
     opacity: 0.5;
+  }
+}
+
+@keyframes unfade {
+  0% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 0;
   }
 }

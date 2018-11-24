@@ -1,18 +1,18 @@
 body {
-  background-color: #e0e5ea;
   margin: 0;
   padding-top: 250px;
-  text-align: center; }
+  text-align: center;
+  background-color: #e0e5ea; }
 
 .overlay {
-  background-color: black;
   height: 100vh;
   width: 100vw;
   position: absolute;
   top: 0;
   bottom: 0;
   opacity: 0;
-  z-index: -1; }
+  z-index: -1;
+  background-color: black; }
 
 .button--label-show {
   display: inline-block;
@@ -22,72 +22,60 @@ body {
   color: #949da5;
   cursor: pointer; }
 
-.button--checkbox-show {
+.button--checkbox {
+  height: 0;
+  width: 0;
   position: absolute;
   opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0; }
-  .button--checkbox-show:checked ~ .button--label-show {
-    opacity: 0; }
-  .button--checkbox-show:checked ~ .modal-window {
+  cursor: pointer; }
+  .button--checkbox:checked ~ .modal-window {
     opacity: 1;
     animation-name: grow;
     animation-duration: 1s;
     animation-fill-mode: forwards; }
-  .button--checkbox-show:checked ~ .button--label-close {
+  .button--checkbox:checked ~ .button--label-close {
     opacity: 1;
     animation-name: grow;
     animation-duration: 1s;
     animation-fill-mode: forwards; }
-  .button--checkbox-show:checked ~ .overlay {
+  .button--checkbox:checked ~ .overlay {
     animation-name: fade;
+    animation-duration: 1s;
+    animation-fill-mode: forwards; }
+  .button--checkbox:not(:checked) ~ .button--label-close {
+    opacity: 0; }
+  .button--checkbox:not(:checked) ~ .overlay {
+    animation-name: unfade;
     animation-duration: 1s;
     animation-fill-mode: forwards; }
 
 .button--label-close {
   display: block;
-  width: 10px;
-  height: 10px;
-  padding: 10px;
+  width: 24px;
+  height: 28px;
+  text-align: center;
+  line-height: 24px;
   font-size: 24px;
   background-color: transparent;
   color: #949da5;
   border: 1px solid #949da5;
-  cursor: pointer; }
-
-.button--checkbox-close {
-  position: absolute;
-  opacity: 0;
   cursor: pointer;
-  height: 0;
-  width: 0; }
-  .button--checkbox-close:checked ~ .button--label-show {
-    opacity: 1; }
-  .button--checkbox-close:checked ~ .button--label-close {
-    opacity: 0; }
-  .button--checkbox-close:checked ~ .modal-window {
-    opacity: 1;
-    animation-name: grow;
-    animation-duration: 1s;
-    animation-fill-mode: forwards;
-    animation-direction: reverse; }
-  .button--checkbox-close:checked ~ .overlay {
-    animation-name: fade;
-    animation-duration: 1s;
-    animation-fill-mode: forwards;
-    animation-direction: reverse; }
+  transform: translate(600px, -20px);
+  transition-duration: 0.3s; }
+  .button--label-close:hover {
+    background-color: #949da5;
+    color: #182c3d; }
 
 .modal-window {
+  opacity: 0;
   margin: auto;
-  background-color: #182c3d;
-  color: #949da5;
   width: 600px;
   padding: 40px;
+  text-align: justify;
+  background-color: #182c3d;
+  color: #949da5;
   font-size: 24px;
-  opacity: 0;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  text-align: justify; }
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); }
 
 @keyframes grow {
   0% {
@@ -100,3 +88,9 @@ body {
     opacity: 0; }
   100% {
     opacity: 0.5; } }
+
+@keyframes unfade {
+  0% {
+    opacity: 0.5; }
+  100% {
+    opacity: 0; } }
